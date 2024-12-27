@@ -1,0 +1,175 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "amount": 100,
+      "type": "Expense",
+      "description": "Restaurant",
+      "category": "Food",
+      "created_at": "2023-03-15T23:00:00"
+    },
+    {
+      "id": 2,
+      "amount": 159,
+      "type": "Expense",
+      "description": "Gas",
+      "category": "Car",
+      "created_at": "2023-03-15T23:00:00"
+    },
+    {
+      "id": 3,
+      "amount": 500,
+      "type": "Income",
+      "description": "Salary",
+      "category": "",
+      "created_at": "2023-03-15T23:00:00"
+    },
+    {
+      "id": 4,
+      "amount": 99,
+      "type": "Expense",
+      "description": "Rent",
+      "category": "Housing",
+      "created_at": "2024-05-10T23:00:00"
+    },
+    {
+      "id": "d672",
+      "type": "Expense",
+      "category": "Car",
+      "amount": 213,
+      "description": "maks",
+      "date": "30-06-2004",
+      "created_at": "30-06-2004T00:00:00"
+    },
+    {
+      "id": "8abe",
+      "type": "Expense",
+      "category": "Car",
+      "amount": 213,
+      "description": "maks",
+      "date": "30-06-2004",
+      "created_at": "30-06-2004T00:00:00"
+    },
+    {
+      "id": "b6d1",
+      "type": "Expense",
+      "category": "Car",
+      "amount": 213,
+      "description": "maks",
+      "date": "30-06-2004",
+      "created_at": "30-06-2004T00:00:00"
+    },
+    {
+      "id": "fa8b",
+      "type": "Expense",
+      "category": "Car",
+      "amount": 213,
+      "description": "maks",
+      "date": "30-06-2004",
+      "created_at": "30-06-2004T00:00:00"
+    },
+    {
+      "id": "7f21",
+      "type": "Expense",
+      "category": "Car",
+      "amount": 213,
+      "description": "maks",
+      "date": "30-06-2004",
+      "created_at": "30-06-2004T00:00:00"
+    },
+    {
+      "id": "9bfb",
+      "type": "Income",
+      "category": "Salary",
+      "amount": 123,
+      "description": "lalal",
+      "date": "30-07-2004",
+      "created_at": "30-07-2004T00:00:00"
+    },
+    {
+      "id": "51bc",
+      "type": "Income",
+      "category": "Salary",
+      "amount": 213,
+      "description": "sad",
+      "date": "30-06-2004",
+      "created_at": "30-06-2004T00:00:00"
+    },
+    {
+      "id": "532d",
+      "type": "Income",
+      "category": "Salary",
+      "amount": 213,
+      "description": "sad",
+      "date": "30-06-2004",
+      "created_at": "30-06-2004T00:00:00"
+    },
+    {
+      "id": "68fb",
+      "type": "Income",
+      "category": "Salary",
+      "amount": 5,
+      "description": "asd",
+      "date": "30-06-2004",
+      "created_at": "30-06-2004T00:00:00"
+    },
+    {
+      "id": "2112",
+      "type": "Income",
+      "category": "Salary",
+      "amount": 5,
+      "description": "asd",
+      "date": "30-06-2004",
+      "created_at": "30-06-2004T00:00:00"
+    },
+    {
+      "id": "a94e",
+      "type": "Income",
+      "category": "Salary",
+      "amount": 5,
+      "description": "asd",
+      "date": "30-06-2004",
+      "created_at": "30-06-2004T00:00:00"
+    },
+    {
+      "id": "98a1",
+      "type": "Income",
+      "category": "Salary",
+      "amount": 22,
+      "description": "asd",
+      "date": "30-06-2004",
+      "created_at": "30-06-2004T00:00:00"
+    },
+    {
+      "id": "0d56",
+      "type": "Income",
+      "category": "Salary",
+      "amount": 22,
+      "description": "asd",
+      "date": "30-06-2004",
+      "created_at": "30-06-2004T00:00:00"
+    }
+  ],
+  "trends": [
+    {
+      "id": "Income",
+      "amount": 4000,
+      "prevAmount": 3000
+    },
+    {
+      "id": "Expense",
+      "amount": 4000,
+      "prevAmount": 3000
+    },
+    {
+      "id": "Saving",
+      "amount": 4000,
+      "prevAmount": 3000
+    },
+    {
+      "id": "Investment",
+      "amount": 4000,
+      "prevAmount": 3000
+    }
+  ]
+}
