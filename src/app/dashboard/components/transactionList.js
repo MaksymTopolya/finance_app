@@ -1,23 +1,37 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import TransactionItem from "./transactionItem";
 import TransactionSummaryItem from "./transactionSummaryItem";
-import Hr from "./hr";
+import Hr from "@/app/components/hr";
 import { groupAndSumTransactionsByDate } from "@/utils/functions";
-import Button from "./button";
+import Button from "@/app/components/button";
 import { fetchTransactions } from "@/utils/actions";
+import { Loader } from "lucide-react";
 
 const TransactionList = ({ initialTransactions, range }) => {
   const [transactions, setTransactions] = React.useState(initialTransactions);
-  const [offset, setOffset] = React.useState(initialTransactions.length);
+
   const [btnHiden, setBtnHidden] = React.useState(
     initialTransactions.length === 0
   );
+  const [loading, setLoading] = React.useState(false);
   const groupedTransactions = groupAndSumTransactionsByDate(transactions);
 
   const hadleClick = async () => {
-    const newTransactions = await fetchTransactions(range, offset, 10);
-    setTransactions((prev) => [...prev, ...newTransactions]);
+    setLoading(true);
+    let newTransactions = [];
+    try {
+      newTransactions = await fetchTransactions(range, transactions.length, 10);
+      setBtnHidden(newTransactions.length === 0);
+
+      setTransactions((prev) => [...prev, ...newTransactions]);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleRemoved = (id) => () => {
+    setTransactions((prev) => [...prev].filter((t) => t.id !== id));
+    // window.location.reload();
   };
 
   return (
@@ -30,7 +44,10 @@ const TransactionList = ({ initialTransactions, range }) => {
             <section className="space-y-4">
               {transactions.map((transaction) => (
                 <div key={transaction.id}>
-                  <TransactionItem {...transaction} />
+                  <TransactionItem
+                    {...transaction}
+                    onRemoved={handleRemoved(transaction.id)}
+                  />
                 </div>
               ))}
             </section>
@@ -45,7 +62,13 @@ const TransactionList = ({ initialTransactions, range }) => {
 
       {!btnHiden && (
         <div className="flex justify-center">
-          <Button variants="outline" sizes="sm" onClick={hadleClick}>
+          <Button
+            variants="outline"
+            sizes="base"
+            onClick={hadleClick}
+            disabled={loading}
+          >
+            {loading && <Loader className="animate-spin" />}
             Load more
           </Button>
         </div>

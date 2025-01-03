@@ -1,7 +1,17 @@
-import React, { use } from "react";
-import { Wallet, Landmark, HandCoins, PiggyBank } from "lucide-react";
+import React from "react";
+import { Wallet, Landmark, HandCoins, PiggyBank, Pencil } from "lucide-react";
 import useFormatedCurrency from "@/hooks/useFormatedCurrency";
-const TransactionItem = ({ type, category, amount }) => {
+import DeleteTransactionBtn from "./deleteTransactionBtn";
+import Link from "next/link";
+import { sizes, variants } from "@/utils/variants";
+const TransactionItem = ({
+  type,
+  category,
+  amount,
+  id,
+  onRemoved,
+  description,
+}) => {
   const typesMap = {
     Income: {
       color: "text-green-600 dark:text-green-400",
@@ -29,7 +39,7 @@ const TransactionItem = ({ type, category, amount }) => {
     <div className="flex w-full items-center">
       <div className="flex items-center mr-4 grow">
         <Icon className={`w-6 h-6 ${color} mr-5`} />
-        <span>{type}</span>
+        <span>{description || type}</span>
       </div>
 
       {category && (
@@ -42,7 +52,15 @@ const TransactionItem = ({ type, category, amount }) => {
 
       <div className="min-w-[70px] text-right">{formatedCurrency}</div>
 
-      <div className="ml-4">...</div>
+      <div className="ml-4 flex items-center">
+        <Link
+          href={`/dashboard/transaction/${id}/edit`}
+          className={`${variants["ghost"]} ${sizes["xs"]}`}
+        >
+          <Pencil className="w-4 h-4" />
+        </Link>
+        <DeleteTransactionBtn id={id} onRemoved={onRemoved} />
+      </div>
     </div>
   );
 };

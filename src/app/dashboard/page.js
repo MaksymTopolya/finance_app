@@ -1,19 +1,21 @@
 import React, { Suspense } from "react";
-import TransactionList from "../components/transactionList";
-import FetchedTrend from "../components/fetchedTrend";
-import SuspenseTransactionList from "../components/suspenseTransactionList";
-import SuspenseTrends from "../components/suspenseTrends";
+
+import FetchedTrend from "./components/fetchedTrend";
+import SuspenseTransactionList from "./components/suspenseTransactionList";
+import SuspenseTrends from "./components/suspenseTrends";
 import { PlusCircle } from "lucide-react";
-import Button from "../components/button";
+import Button from "@/app/components/button";
 import Link from "next/link";
-import { createClient } from "@/utils/supabase/server";
+// import { createClient } from "@/utils/supabase/server";
 import { types } from "@/utils/const";
 import { ErrorBoundary } from "react-error-boundary";
-import Range from "../components/range";
-import TransactionsListWrapper from "../components/transactionsListWrapper";
+import Range from "./components/range";
+import TransactionsListWrapper from "./components/transactionsListWrapper";
+import { createClient } from "@/utils/supabase/server";
 
 const Page = async ({ searchParams }) => {
   const range = searchParams?.range ?? "last30days";
+
   return (
     <section>
       <section className="mb-8 flex justify-between items-center">

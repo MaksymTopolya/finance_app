@@ -4,7 +4,9 @@ export const variants = {
   outline:
     "border border-gray-300 dark:border-gray-500 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 disabled:opacity-25 disabled:cursor-not-allowed",
   ghost:
-    "rounded-md bg-white dark:bg-black hover:bg-gray-200 dark:hover:bg-gray-500 disabled:opacity-25 disabled:cursor-not-allowed",
+    "rounded-md bg-white dark:bg-gray-950 hover:bg-gray-200 dark:hover:bg-gray-500 disabled:opacity-25 disabled:cursor-not-allowed",
+  danger:
+    "bg-red-500 text-white dark:bg-red-500 rounded-md hover:bg-red-700 dark:hover:bg-red-700 disabled:opacity-75",
 };
 export const sizes = {
   xs: "text-xs px-2 py-1",

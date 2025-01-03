@@ -1,8 +1,6 @@
 import React from "react";
 import Trend from "./trend";
-
 import { createClient } from "@/utils/supabase/server";
-
 const FetchedTrend = async ({ type, range }) => {
   // await delay(5000);
   const supabase = createClient();

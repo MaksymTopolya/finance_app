@@ -1,5 +1,5 @@
 import React from "react";
-import Skeleton from "./skeleton";
+import Skeleton from "@/app/components/skeleton";
 
 const SuspenseTransactionList = () => {
   return (

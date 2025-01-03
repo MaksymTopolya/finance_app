@@ -3,7 +3,7 @@ const metadata = {
   title: "Add Transactions",
 };
 const Page = () => {
-  return <div>Pageasds</div>;
+  return <div>Page</div>;
 };
 
 export default Page;

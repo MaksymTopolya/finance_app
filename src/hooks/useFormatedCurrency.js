@@ -8,9 +8,7 @@ const useFormatedCurrency = (amount) => {
     });
   };
 
-  return useMemo(() => {
-    return formatCurrency(amount);
-  }, [amount]);
+  return formatCurrency(amount);
 };
 
 export default useFormatedCurrency;

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Select from "./select";
+import Select from "@/app/components/select";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 const Range = () => {
@@ -17,7 +17,7 @@ const Range = () => {
   };
   return (
     <Select onChange={onChange} value={range}>
-      <option value="today">Today</option>
+      <option value="last24hours">Last 24 hours</option>
       <option value="last7days">Last 7 days</option>
       <option value="last30days">Last 30 days</option>
       <option value="last12months">Last 12 months</option>

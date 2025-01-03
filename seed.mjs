@@ -11,12 +11,48 @@ const supabase = createClient(
 
 const categories = ["Salary", "Food", "Car", "House", "Other"];
 
+async function seedUsers() {
+  for (let i = 0; i < 5; i++) {
+    try {
+      const { data, error } = await supabase.auth.admin.createUser({
+        email: faker.internet.email(),
+        password: faker.internet.password(),
+        user_metadata: {
+          name: faker.name.fullName(),
+        },
+      });
+
+      if (error) {
+        throw new Error(error);
+      }
+
+      console.log(`Created user with ID: ${data.user.id}`);
+    } catch (error) {
+      console.error("Error while seeding users:", error);
+    }
+  }
+}
+
 async function seed() {
+  await seedUsers();
   let transactions = [];
 
-  for (let i = 0; i < 10; i++) {
+  const {
+    data: { users },
+    error: usersError,
+  } = await supabase.auth.admin.listUsers();
+
+  if (usersError) {
+    console.error("Error while getting users:", usersError);
+    return;
+  }
+
+  const userIds = users?.map((user) => user.id);
+
+  for (let i = 0; i < 100; i++) {
     const created_at = faker.date.past();
     const typeBias = Math.random();
+    const userId = faker.helpers.arrayElement(userIds);
 
     let type;
     let category = null;
@@ -53,6 +89,7 @@ async function seed() {
       type,
       category,
       description: faker.lorem.sentence(),
+      user_id: userId,
     });
   }
 
@@ -61,7 +98,7 @@ async function seed() {
   if (error) {
     console.error("Error while seeding data:", error);
   } else {
-    console.log("Data seeded successfully!");
+    console.log(`Seeded ${transactions.length} transactions`);
   }
 }
 
