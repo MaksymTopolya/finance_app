@@ -1,31 +1,19 @@
-import { createMiddlewareSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { updateSession } from "@/utils/supabase/midleware";
+import { createClient } from "@/utils/supabase/server";
 import { NextResponse } from "next/server";
 
 export async function middleware(request) {
-  const response = NextResponse.next();
-
-  const supabase = createMiddlewareSupabaseClient({
-    req: request,
-    res: response,
-  });
-
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await createClient().auth.getUser();
 
-  const url = request.nextUrl.clone();
+  if (!user && request.nextUrl.pathname.startsWith("/dashboard"))
+    return NextResponse.redirect("/login");
 
-  if (!user && url.pathname.startsWith("/dashboard")) {
-    url.pathname = "/login";
-    return NextResponse.redirect(url);
-  }
+  if (user && request.nextUrl.pathname.startsWith("/login"))
+    return NextResponse.redirect("/dashboard");
 
-  if (user && url.pathname.startsWith("/login")) {
-    url.pathname = "/dashboard";
-    return NextResponse.redirect(url);
-  }
-
-  return response;
+  return await updateSession(request);
 }
 
 export const config = {
