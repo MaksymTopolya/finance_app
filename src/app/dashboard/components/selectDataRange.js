@@ -1,0 +1,15 @@
+import Select from "@/app/components/select";
+import React from "react";
+
+const SelectDataRange = (props) => {
+  return (
+    <Select {...props}>
+      <option value="last24hours">Last 24 hours</option>
+      <option value="last7days">Last 7 days</option>
+      <option value="last30days">Last 30 days</option>
+      <option value="last12months">Last 12 months</option>
+    </Select>
+  );
+};
+
+export default SelectDataRange;

@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export default function LoginForm() {
-  const [state, formAction] = useActionState(login, initialState);
+  const [state, formAction, isPending] = useActionState(login, initialState);
   return (
     <form action={formAction} className="space-y-2">
       <Input
@@ -20,6 +20,7 @@ export default function LoginForm() {
         required
       />
       <SubmitButton
+        isPending={isPending}
         type="submit"
         variants="default"
         size="sm"

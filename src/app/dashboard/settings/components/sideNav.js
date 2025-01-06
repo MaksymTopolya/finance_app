@@ -33,7 +33,7 @@ export default function SideNav() {
             <span>Avatar</span>
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link
             href="/dashboard/settings/profile"
             className={`px-2.5 py-2 flex items-center space-x-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 ${
@@ -45,7 +45,7 @@ export default function SideNav() {
             <User className="w-4 h-4" />
             <span>Profile</span>
           </Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

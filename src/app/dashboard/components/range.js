@@ -1,28 +1,22 @@
 "use client";
 import React from "react";
-import Select from "@/app/components/select";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
-const Range = () => {
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import SelectDataRange from "./selectDataRange";
+
+const Range = ({ range: defaultRange }) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const range = searchParams.get("range") ?? "last30days";
+  const range = searchParams.get("range") ?? defaultRange ?? "last30days";
   const onChange = (e) => {
     const params = new URLSearchParams();
     params.set("range", e.target.value);
 
     replace(`${pathname}?${params.toString()}`);
   };
-  return (
-    <Select onChange={onChange} value={range}>
-      <option value="last24hours">Last 24 hours</option>
-      <option value="last7days">Last 7 days</option>
-      <option value="last30days">Last 30 days</option>
-      <option value="last12months">Last 12 months</option>
-    </Select>
-  );
+  return <SelectDataRange onChange={onChange} value={range} />;
 };
 
 export default Range;

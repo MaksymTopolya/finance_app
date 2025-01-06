@@ -78,3 +78,81 @@ export const logOut = async () => {
   if (error) throw new Error("Something went wrong");
   redirect("/login");
 };
+
+export const uploadAvatar = async (prevState, formData) => {
+  delay(2000);
+  const supabase = createClient();
+
+  const file = formData.get("file");
+  const fileExt = file.name.split(".").pop();
+  const fileName = `${Math.random()}.${fileExt}`;
+
+  const { error } = await supabase.storage
+    .from("avatars")
+    .upload(fileName, file);
+  if (error) {
+    return {
+      error: true,
+      message: "Error uploading avatar",
+    };
+  }
+
+  const { data: userData, userError } = await supabase.auth.getUser();
+  if (userError) {
+    return {
+      error: true,
+      message: "Error fetching user",
+    };
+  }
+
+  const avatar = userData.user_metadata?.avatar;
+  if (avatar) {
+    const { error: removeError } = await supabase.storage
+      .from("avatars")
+      .remove([avatar]);
+
+    if (removeError) {
+      return {
+        error: true,
+        message: "Error removing old avatar",
+      };
+    }
+  }
+
+  const { error: dataUpdateError } = await supabase.auth.updateUser({
+    data: {
+      avatar: fileName,
+    },
+  });
+
+  if (dataUpdateError) {
+    return {
+      error: true,
+      message: "Error associating the avatar with the user",
+    };
+  }
+
+  return {
+    message: "Updated the user avatar",
+  };
+};
+
+export async function updateSettings(prevState, formData) {
+  const supabase = createClient();
+  const { error } = await supabase.auth.updateUser({
+    data: {
+      fullName: formData.get("fullName"),
+      defaultView: formData.get("defaultView"),
+    },
+  });
+
+  if (error) {
+    return {
+      error: true,
+      message: "Failed updating setting",
+    };
+  }
+  return {
+    message: "Updated user settings",
+  };
+}

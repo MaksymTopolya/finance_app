@@ -7,6 +7,7 @@ import Button from "@/app/components/button";
 import { CircleUser, KeyRound } from "lucide-react";
 import SignOutButton from "./signOutButton";
 import { variants, sizes } from "@/utils/variants";
+import Avatar from "./avatar";
 const Header = async ({ className }) => {
   const theme = useServerDarkMode("dark");
   const supabase = createClient();
@@ -32,8 +33,8 @@ const Header = async ({ className }) => {
               size="sm"
               className="flex items-center space-x-1"
             >
-              <CircleUser className="w-6 h-6" />
-              <span>{user?.email}</span>
+              <Avatar />
+              <span>{user?.user_metadata?.fullName || user?.email}</span>
             </Button>
           </Link>
         )}

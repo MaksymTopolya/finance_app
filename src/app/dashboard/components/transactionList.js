@@ -31,7 +31,7 @@ const TransactionList = ({ initialTransactions, range }) => {
   };
   const handleRemoved = (id) => () => {
     setTransactions((prev) => [...prev].filter((t) => t.id !== id));
-    // window.location.reload();
+    window.location.reload();
   };
 
   return (
